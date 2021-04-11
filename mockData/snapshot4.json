@@ -1,0 +1,81 @@
+{
+  "card": {
+    "brand": "visa",
+    "createdAt": "2019-05-13T20:19:16.214Z",
+    "deleted": 0,
+    "numberCrip": "**** **** **** 3470",
+    "objectId": "wJRyJmAH2U",
+    "owner": {
+      "__type": "Pointer",
+      "className": "_User",
+      "objectId": "rxvl6PRFwI"
+    },
+    "paymentCustomerId": 2006704,
+    "paymentId": "card_cjul7ccrj0crixp6ez357qtkl",
+    "primary": 1,
+    "updatedAt": "2019-05-13T20:19:16.214Z"
+  },
+  "client": {
+    "name": "Tulio Parreiras",
+    "objectId": "rxvl6PRFwI",
+    "phone": 31984923952,
+    "profileImage": "http://mov-api.usemobile.com.br/use/files/N5A1E53IWNIDIDIWOPFNIDBEI55HGWNIDNID/e129039f849ffc68c8e50c34657a1c6f_1553612326.827863.png",
+    "rate": "4.36"
+  },
+  "destination": {
+    "address": "Praça Tiradentes",
+    "city": "Ouro Preto",
+    "favorite": 0,
+    "location": {
+      "__type": "GeoPoint",
+      "latitude": "-20.385407",
+      "longitude": "-43.5034264"
+    },
+    "state": "Minas Gerais",
+    "type": "destination",
+    "zip": 35400000
+  },
+  "distance": 3,
+  "driver": {
+    "name": "Tulio Parreiras",
+    "objectId": "V2KTwllVSH",
+    "phone": 31984923952,
+    "profileImage": "http://mov-api.usemobile.com.br/use/files/N5A1E53IWNIDIDIWOPFNIDBEI55HGWNIDNID/46fdafa390cce24b8ecd2560c6d0e1c6_1558473161.968363.png",
+    "rate": "4.85"
+  },
+  "fee": 1,
+  "isWaitingPassenger": 0,
+  "map": {
+    "bigMap": "http://mov-api.usemobile.com.br/use/files/N5A1E53IWNIDIDIWOPFNIDBEI55HGWNIDNID/058b7a7c17c2ba1ab3e8f3191e0cd5a3_image.png"
+  },
+  "objectId": "zF6kLN9pG6",
+  "origin": {
+    "address": "Rua Professor Francisco Pignataro",
+    "city": "Ouro Preto",
+    "favorite": 0,
+    "location": {
+      "__type": "GeoPoint",
+      "latitude": "-20.4004359",
+      "longitude": "-43.5109541"
+    },
+    "neighborhood": "Bauxita",
+    "number": 151,
+    "state": "Minas Gerais",
+    "type": "origin",
+    "zip": 35400000
+  },
+  "payment": "Cartão",
+  "status": "completed",
+  "time": 0,
+  "travelId": "zF6kLN9pG6",
+  "value": "8.039999999999999",
+  "valueDriver": "7.04",
+  "vehicle": {
+    "brand": "Ford",
+    "category": "common",
+    "color": "Prata",
+    "model": "Fiesta",
+    "objectId": "NWvY9QZ7Hq",
+    "plate": "JEO7374"
+  }
+}

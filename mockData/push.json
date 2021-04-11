@@ -1,0 +1,37 @@
+{
+    "AnyHashable('aps')": {
+        "alert": "Nova solicitação de viagem",
+        "badge": 1,
+        "content-available": 1,
+        "sound": "default"
+    },
+    "AnyHashable('text')": {
+        "category": "Comum",
+        "client": "driver",
+        "destination": {
+            "address": "Praça Tiradentes",
+            "city": "Ouro Preto",
+            "neighborhood": "",
+            "number": "",
+            "state": "Minas Gerais"
+        },
+        "hidePayment": 0,
+        "hidePaymentType": 0,
+        "id": 0,
+        "name": "Tulio",
+        "objectId": "zF6kLN9pG6",
+        "origin": {
+            "address": "Rua Professor Francisco Pignataro",
+            "city": "Ouro Preto",
+            "neighborhood": "Bauxita",
+            "number": 151,
+            "state": "Minas Gerais"
+        },
+        "payment": "Cartão",
+        "profileImage": "http://mov-api.usemobile.com.br/use/files/N5A1E53IWNIDIDIWOPFNIDBEI55HGWNIDNID/e129039f849ffc68c8e50c34657a1c6f_1553612326.827863.png",
+        "rate": "4.36",
+        "showDestiny": 0,
+        "timeInSeconds": 0,
+        "type": "newRequest"
+    }
+}

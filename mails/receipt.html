@@ -1,0 +1,52 @@
+<html>
+<head>
+    <title>Untitled-5</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body bgcolor="{{colorBG}}" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" style="font-family: arial;">
+
+<table bgcolor="#fff" align="center" id="Table_01" width="618" border="0" cellpadding="0" cellspacing="0"
+       style="color: #979797; font-size: 22px;">
+    <tr>
+        <td>
+            <img src="https://usemobile.s3-us-west-2.amazonaws.com/usemobile/img_62186.png" width="618" height="146" alt="Código de Barras">
+        </td>
+    </tr>
+    <tr>
+        <td width="618" height="132" alt="Logo">
+            <img src="{{logoImage}}" style="max-width: 175px;max-height: 100px;"/>
+        </td>
+    </tr>
+    <tr>
+        <td width="618">
+            <br>
+            <p style="margin-left: 20px;">{{date}} <br><small>{{time}}</small></p>
+            <p style="margin-left: 20px;">PAGAMENTO <br><span>{{payment}}</span></p>
+            <p style="margin-left: 20px;">IDENTIFICADOR DA VIAGEM <br><span>{{objectId}}</span></p>
+            <p style="margin-left: 20px; line-height: 130%;">
+                ORIGEM <br>
+                <span style="color: #333;"> {{streetOrigin}}, {{numberOrigin}}</span> <br>
+                {{neighborhoodOrigin}} - {{cityOrigin}} <br>
+            </p>
+            <p style="margin-left: 20px; line-height: 130%;">
+                DESTINO <br>
+                <span style="color: #333;"> {{streetDestination}}, {{numberDestination}}</span> <br>
+                {{neighborhoodDestination}} - {{cityDestination}} <br>
+            </p><br>
+            <div style="margin-left: 20px; line-height: 130%;">
+                <br>
+                {{values}}
+                <br>
+                <br>
+            </div>
+
+        </td>
+    </tr>
+    <tr>
+        <td height="20"></td>
+    </tr>
+
+</table>
+<!-- End Save for Web Slices -->
+</body>
+</html>

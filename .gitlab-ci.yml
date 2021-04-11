@@ -1,0 +1,200 @@
+# This file is a template, and might need editing before it works on your project.
+# Official framework image. Look for the different tagged releases at:
+# https://hub.docker.com/r/library/node/tags/
+
+.only-default: &only-default
+  only:
+    - merge_requests
+    - tags
+
+.only-release: &only-release
+  only:
+    - master
+    - production
+
+image: tarampampam/node:12-alpine
+
+# Pick zero or more services to be used on all builds.
+# Only needed when using a docker container to run your tests in.
+# Check out: http://docs.gitlab.com/ce/ci/docker/using_docker_images.html#what-is-a-service
+services:
+  - mongo:latest
+  - redis:latest
+# This folder is cached between builds
+# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
+#cache:
+#  paths:
+#  - node_modules/
+stages:
+  - test
+  - test2
+  - build
+  - deploy
+
+
+test:
+  stage: test
+  <<: *only-default
+  script:
+    - npm install
+    - mkdir config
+    - wget 'god-api.usemobile.com.br/test'
+    - cp test config/test.json
+    - npm i jest
+    - npm run test
+
+mova:
+  stage: test
+  <<: *only-release
+  script:
+    - export npm_config_cache=$(mktemp -d)
+    - npm install
+    - mkdir config
+    - wget 'god-api.usemobile.com.br/test?file=testMova'
+    - cp 'test?file=testMova' config/test.json
+    - ls
+    - npm run test
+    - rm -rf $npm_config_cache
+
+mobdrive:
+  stage: test2
+  <<: *only-release
+  script:
+    - npm install
+    - mkdir config
+    - wget 'god-api.usemobile.com.br/test?file=testMobdrive'
+    - cp 'test?file=testMobdrive' config/test.json
+    - ls
+    - npm run test
+one:
+  stage: test2
+  <<: *only-release
+  script:
+    - npm install
+    - mkdir config
+    - wget 'god-api.usemobile.com.br/test?file=testOne'
+    - cp 'test?file=testOne' config/test.json
+    - npm run test
+
+deploy-one:
+    stage: deploy
+    when: manual
+    variables:
+      BODY: 'token=$ONE_TOKEN&CI_PROJECT_ID=$CI_PROJECT_ID&CI_JOB_ID=$CI_JOB_ID'
+    <<: *only-release
+    script:
+      - rm -r node_modules
+      - rm -r .git
+      - rm -r .gitlab
+      - wget --post-data $BODY $ONE_URL
+    artifacts:
+      name: "tipo-uber-api-one"
+      paths:
+        - ./*
+deploy-demo-dev:
+  stage: deploy
+  when: manual
+  variables:
+    BODY: 'token=$DEMO_DEV_TOKEN&CI_PROJECT_ID=$CI_PROJECT_ID&CI_JOB_ID=$CI_JOB_ID'
+  <<: *only-release
+  script:
+    - rm -r node_modules
+    - rm -r .git
+    - rm -r .gitlab
+    - wget --post-data $BODY $DEMO_DEV_URL
+  artifacts:
+    name: "tipo-uber-api-dev"
+    paths:
+      - ./*
+
+deploy-mobdrive:
+  stage: deploy
+  when: manual
+  variables:
+    BODY: 'token=$MOBDRIVE_TOKEN&CI_PROJECT_ID=$CI_PROJECT_ID&CI_JOB_ID=$CI_JOB_ID'
+  <<: *only-release
+  script:
+    - rm -r node_modules
+    - rm -r .git
+    - rm -r .gitlab
+    - wget --post-data $BODY $MOBDRIVE_URL
+  artifacts:
+    name: "tipo-uber-api-mobdrive"
+    paths:
+      - ./*
+
+deploy-yesgo:
+  stage: deploy
+  when: manual
+  variables:
+    BODY: 'token=$YESGO_TOKEN&CI_PROJECT_ID=$CI_PROJECT_ID&CI_JOB_ID=$CI_JOB_ID'
+  <<: *only-release
+  script:
+    - rm -r node_modules
+    - rm -r .git
+    - rm -r .gitlab
+    - wget --post-data $BODY $YESGO_URL
+  artifacts:
+    name: "tipo-uber-api-yesgo"
+    paths:
+      - ./*
+
+deploy-escapp:
+  stage: deploy
+  when: manual
+  variables:
+    BODY: 'token=$ESCAPP_TOKEN&CI_PROJECT_ID=$CI_PROJECT_ID&CI_JOB_ID=$CI_JOB_ID'
+  <<: *only-release
+  script:
+    - rm -r node_modules
+    - rm -r .git
+    - rm -r .gitlab
+    - wget --post-data $BODY $ESCAPP_URL
+  artifacts:
+    name: "tipo-uber-api-escapp"
+    paths:
+      - ./*
+
+deploy-cheguei:
+  <<: *only-release
+  stage: deploy
+  when: manual
+  variables:
+    BODY: 'token=$CHEGUEI_TOKEN&CI_PROJECT_ID=$CI_PROJECT_ID&CI_JOB_ID=$CI_JOB_ID'
+  script:
+    - rm -r node_modules
+    - rm -r .git
+    - rm -r .gitlab
+    - wget --post-data $BODY $CHEGUEI_URL
+  artifacts:
+    name: "tipo-uber-api-cheguei"
+    paths:
+      - ./*
+
+deploy-diuka:
+  <<: *only-release
+  stage: deploy
+  when: manual
+  variables:
+    BODY: 'token=$CHEGUEI_TOKEN&CI_PROJECT_ID=$CI_PROJECT_ID&CI_JOB_ID=$CI_JOB_ID'
+  script:
+    - rm -r node_modules
+    - rm -r .git
+    - rm -r .gitlab
+    - wget --post-data $BODY $CHEGUEI_URL
+  artifacts:
+    name: "tipo-uber-api-cheguei"
+    paths:
+      - ./*
+
+sast:
+  <<: *only-release
+  stage: test
+  image: python:3.7-alpine
+  artifacts:
+    paths:
+      - sast-scan.json
+  script:
+    - pip install nodejsscan
+    - nodejsscan -d ./ -o sast-scan.json
+

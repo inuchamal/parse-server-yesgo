@@ -1,0 +1,392 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+</head>
+<body>
+<script src="parse-1.9.2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
+<script>
+    var socket = io.connect("http://tipo-uber-api-dev.usemobile.com.br/?user=4r9aF3o6mk");
+    var ready = false;
+    socket.on("sPB4wqGMJs", function(client,msg) {
+        // socket.emit("travel", {id: "qweqw"})
+        console.log('on event ', client, msg)
+    });
+</script>
+<script type="text/javascript">
+    // Parse.initialize('559DPDIP5GNIDBEIDWNIDNIDA63FID');
+    // Parse.initialize('FNIDBEI5GWNIDNIDA63OP5WNIDIDIWHNID');
+    Parse.initialize('FNIDBEI5GWNIDNIDA63OP5WNIDIDIWHNID');
+    // Parse.serverURL = 'http://mobdrive-api.usemobile.com.br/use';
+    //    Parse.serverURL = 'http://princessdriver-api.usemobile.com.br/use';
+    //    Parse.serverURL = 'http://bigu-api.euvoudebigu.com.br/use';
+    //    Parse.serverURL = 'http://bigu-api.usemobile.com.br/use';
+    //            Parse.serverURL = 'https://api.mobdrive.com.br/use';
+    // Parse.serverURL = 'https://api-dev.oletsgo.com.br/use';
+    // Parse.serverURL = 'https://tipo-uber-api-dev.usemobile.com.br/use';
+    Parse.serverURL = 'https://api-prod.ubxbr.com.br/use';
+
+    //
+    function run(method, params) {
+        Parse.Cloud.run(method, params).then(function (camp) {
+            console.log(camp);
+            if (camp.sessionToken || camp.attributes && camp.attributes.sessionToken) {
+                Parse.User.become(camp.sessionToken || camp.attributes.sessionToken)
+            }
+        }, function (error) {
+            if (error && error.code == 209)
+                Parse.User.logOut();
+            console.log(error);
+        });
+    }
+
+    //     var user = new Parse.User();
+    //     user.set("name", "Bigu")
+    //     user.set("username", "contato@euvoudebigu.com.br")
+    //     user.set("email", "contato@euvoudebigu.com.br")
+    //     user.set("password", "2207bigu")
+    //     user.save().then(function (ok) {
+    //         console.log(ok)
+    //     }, function (error) {
+    //         console.log(error)
+    //     })
+    //
+    //        admin
+    // run("setOnline", {offset: -180});
+    //
+    // run("logInDriver", {
+    //     deviceInfo:
+    //         {
+    //             platform: 'android',
+    //             language: 'pt',
+    //             manufacturer: 'motorola',
+    //             appVersion: '2.0',
+    //             model: 'Moto G (5)',
+    //             version: '7.0'
+    //         },
+    //     password: '123123',
+    //     login: 'patrick+d@usemobile.com.br'
+    // });
+    // run("getTravelDetail", { location: { latitude: -20.40039845, longitude: -43.51102194 },
+    //     objectId: 'aRecnKw8CH' });
+    // run("logInPassenger", {
+    //     login: 'ti@usemobile.com.br',
+    //     password: 'usemobile'
+    // });
+    // run("logIn", {
+    //     login: 'suporte@usemobile.com.br',
+    //     password: 'usemobile'
+    // });
+    // run("completeTravelAsAdmin", {
+    //     objectId: "PVUeMWG5qP",
+    //     offset: -180
+    // });
+    // run("getFinanceByDriver", {userId: "eO0PnYNjNy"});
+    // run("getNodesOfUser", {"nodeId": "7nBfqe9ap8"});
+    //     run("passengersNetwork",{ limit: 10, month: 1, page: 1, year: 2019 });
+
+    // run("preSignUpDriver", {
+    //     "email": "danilo.machado+m003@usemobile.xyz",
+    //     "profileImage": "https://api-dev.oletsgo.com.br/use/files/N5A1E53IWNIDIDIWOPFNIDBEI55HGWNIDNID/acc889562a8af2d45f5566c8d535a4cb_image.jpeg",
+    //     "password": "********",
+    //     "name": "Fernando Maia",
+    //     "phone": "31987738328",
+    //     "cpf": "37466604080",
+    //     "gender": "m",
+    //     "code": "Clwhoo2rZq"
+    // })
+    //         deviceInfo:
+    //             {
+    //                 model: 'iPhone 8',
+    //                 language: 'pt',
+    //                 version: 'iOS',
+    //                 manufacturer: 'apple',
+    //                 appVersion: '1.0.1',
+    //                 deviceType: 'ios'
+    //             },
+    //         deviceToken:
+    //             'de1380eaabdfd6d2f50e95dae4253aee0d6198060aed110014e06796294ba095',
+    //         deviceType: 'ios',
+    //         appIdentifier: 'usemobile.com.br.Tipo-Uber-Motorista',
+    //         installationId: '08F222D6-2093-4CAC-BFD3-8B585AC2CA26',
+    //         login: 'tulio_parreiras@hotmail.com',
+    //         password: 'usemobile'
+    //     }
+    // // );
+    // run("completeTravelAsAdmin", {
+    //     "objectId": "GgaDAzFY2b",
+    //     "offset": -180
+    // })
+    //            offset:-120
+    //        })
+    //        startDate: new Date("2019-01-01T19:30:19.784Z"),
+    //        endDate: new Date,
+    ////        isOffline: true,
+    //        limit: 100
+    //        latitude: -20.4005667,
+    //        objectId: 'U40XGqIjfC',
+    //        offset: -120,
+    //        longitude: -43.5110916
+    //    });
+    //     run('changeCategoryOfVehicle', {"vehicleId": "aRIrY8uVo5", "categoryId":"FXe0BxAybG"});
+    // run("withdraw", {});
+    // run("verifyCoupon", {name: "cupomTESTE", offset:180});
+    //     gender: null,
+    //     inTravel: null,
+    //     limit: 10,
+    //     order: "-createdAt",
+    //     page: 1,
+    //     readyToRide: null,
+    //     search: "039145"
+    // });
+    // run("listTravelOptions", {
+    //     city: 'Ouro Preto',
+    //     distance: 0.498,
+    //     location:
+    //         {
+    //             latitude: -20.400503158569336,
+    //             longitude: -43.511051177978516
+    //         },
+    //     offset: -180,
+    //     state: 'Minas Gerais',
+    //     time: 1.9833333333333334
+    // });
+    //        run("listTravelOptions", {
+    //            location: { latitude: -20.3998702,
+    //                longitude: -43.5073394},
+    //            distance: 7,
+    //            city: "Vila Velha",
+    //            state: "Minas Gerais",
+    //            time: 15,
+    //        });
+    // run("listTravelOptions", {
+    //     state: 'Minas Gerais',
+    //     location: {latitude: -19.9266016, longitude: -43.8979341},
+    //     city: 'Belo Horizonte',
+    //     time: 57.21666666666667,
+    //     distance: 38.862
+    // });
+
+    //                run("userProfile", {
+    //            distance: 10,
+    //            city:"Ouro Preto",
+    //                state:"Minas Gerais"
+    //                });
+    function deleteTravel(id) {
+        run('deleteTravel', {
+            travelId: id, offset: -180
+        });
+    }
+
+    function completeTravelFlow(id) {
+        run('completeTravelFlow', {
+                latitude: -20.400443,
+                objectId: id,
+                offset: -180,
+                longitude: -43.5110075
+            }
+        );
+    }
+
+    function acceptTravel(id) {
+        run('acceptTravel', {
+            "objectId": id, "offset": -180
+        });
+    }
+
+    function informArrival(id) {
+        run('informArrival', {
+            "objectId": id, "offset": -180
+        });
+    }
+
+    function initTravel(id) {
+        run('initTravel', {
+            "objectId": id, "offset": -180
+        });
+    }
+
+    function cancelTravel(id) {
+        run('cancelTravel', {
+            "objectId": id, "offset": -180
+        });
+    }
+
+    function requestTravel() {
+        run('requestTravelFlow', {
+            cardId: 'money',
+            location:
+                {latitude: -20.400477591921018, longitude: -43.51105724465429},
+            originalValue: 66.95,
+            distance: 38,
+            fareId: 'vZc2QzjMCv',
+            offset: -180,
+            destination:
+                {
+                    neighborhood: '',
+                    longitude: -44.201201,
+                    state: 'State of Minas Gerais',
+                    number: '',
+                    latitude: -19.9673755,
+                    address: '',
+                    city: 'Betim',
+                    zip: ''
+                },
+            origin:
+                {
+                    state: 'Minas Gerais',
+                    address: 'Rua Juramento',
+                    city: 'Belo Horizonte',
+                    latitude: -19.9266016,
+                    longitude: -43.8979341,
+                    neighborhood: 'Saudade',
+                    number: '1464',
+                    zip: '30285-408'
+                },
+            womenOnly: true,
+            time: 57,
+            value: 66.95
+        });
+    }
+    function fix_dValues() {
+        let travel = Parse.Object.extend("Travel")
+        let q = new Parse.Query(travel)
+        let driver = new Parse.User()
+        // let user = new Parse.User()
+        driver.set('objectId', 'a5OQDs97Tf');
+        q.equalTo('driver', driver)
+        q.equalTo('status', 'completed')
+        let totalFee = 0;
+        // q.doesNotExist('card')
+        // q.greaterThan('createdAt', new Date("2019-10-14T13:18:00.000Z"));
+        // q.lessThan('createdAt', new Date("2019-10-16T10:34:00.000Z"));
+        // q.select('inDebt')
+        q.limit(1000)
+        q.find().then((t)=>{
+            let tValue = 0;
+            for(let i = 0; i < t.length; i++){
+                totalFee += t[i].get('card') ? -t[i].get('valueDriver') : t[i].get('inDebt')
+            }
+            console.log(totalFee)
+        })
+    }
+    fix_dValues()
+    //
+    // requestTravel();
+    // cancelTravel("4owAOtpYnh");
+    // acceptTravel("EQwrVlWH5h");
+    // informArrival("EQwrVlWH5h");
+    // initTravel("EQwrVlWH5h");
+    // completeTravelFlow("TUAsTK7GYx");
+    // deleteTravel("hnWdGVPFYb");
+
+    //        destination: {
+    //            address: 'Rua Alfa',
+    //            city: 'Ouro Preto',
+    //            latitude: -20.3998702,
+    //            longitude: -43.5073394,
+    //            number: '117a',
+    //            state: 'Minas Gerais',
+    //            zip: '35400-000'
+    //        },
+    //        distance: 0.947,
+    //        fareId: 'OPdOXYTLxe',
+    //        offset: -120,
+    //        origin: {
+    //            address: 'Rua Professor Francisco Pignataro',
+    //            city: 'Ouro Preto',
+    //            latitude: -20.4005033,
+    //            longitude: -43.511050999999995,
+    //            neighborhood: 'Bauxita',
+    //            number: '151',
+    //            state: 'Minas Gerais',
+    //            zip: '35400-000'
+    //        },
+    //        time: 3,
+    //        value: 4.01
+    //    });
+</script>
+
+
+<script type="text/javascript">
+    window.fbAsyncInit = function () {
+        /*FB.init({
+         appId      : '843242869145075',
+         status     : true,
+         xfbml      : true,
+         version    : 'v2.7'
+         });*/
+        Parse.FacebookUtils.init({
+            appId: '188482118471456',
+            status: true,
+            xfbml: true,
+            version: 'v2.7'
+        });
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<button onclick="loginFacebook()">Facebook</button>
+
+<script>
+    function loginFacebook() {
+        Parse.FacebookUtils.logIn("email", {
+            success: function (user) {
+                console.log(user);
+            },
+            error: function (user, error) {
+                console.log("User cancelled the Facebook login or did not fully authorize.");
+            }
+        });
+    }
+</script>
+<div id="drop_zone">Drop files here</div>
+<output id="list"></output>
+
+<script>
+    function handleFileSelect(evt) {
+        evt.stopPropagation();
+        evt.preventDefault();
+        var files = evt.dataTransfer.files; // FileList object.
+
+        // files is a FileList of File objects. List some properties.
+        var output = [];
+        for (var i = 0, f; f = files[i]; i++) {
+            console.log(f);
+            console.log(f.name);
+            console.log(f.type);
+            new Parse.File(f.name, f).save().then(function (result) {
+                    console.log(result);
+                },
+                function (error) {
+                    console.log(error);
+                });
+
+            output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                f.size, ' bytes, last modified: ',
+                f.lastModifiedDate.toLocaleDateString(), '</li>');
+        }
+        document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+    }
+
+    function handleDragOver(evt) {
+        evt.stopPropagation();
+        evt.preventDefault();
+        evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+    }
+
+    // Setup the dnd listeners.
+    var dropZone = document.getElementById('drop_zone');
+    dropZone.addEventListener('dragover', handleDragOver, false);
+    dropZone.addEventListener('drop', handleFileSelect, false);</script>
+</body>
+</html>
